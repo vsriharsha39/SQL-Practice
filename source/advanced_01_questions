@@ -1,0 +1,38 @@
+
+1. Find the number of working days for each Employee [tables: Employee_details, holidays]
+create table Employee_details
+(
+Emp_ID varchar(10),
+Emp_Name varchar(50),
+Join_date date,
+End_date date
+);
+insert into Employee_details values
+(1,'John','2022-01-01','2022-05-03')
+,(2,'Jacob','2022-01-06','2022-05-12')
+,(3,'Rachel','2022-02-01','2022-09-16')
+,(4,'Sam','2022-04-13','2022-08-03')
+,(5,'Jake','2022-05-01','2022-11-12')
+,(6,'Mike','2022-11-03','2022-12-16')
+,(7,'Aaron','2022-09-01','2022-12-28')
+,(8,'Robin','2022-03-16','2022-06-17')
+,(9,'Nancy','2022-01-01','2022-03-11')
+,(10,'Claire','2022-05-01','2022-10-16');
+ 
+create table holidays
+(
+holiday_date date
+,Occasion varchar(100)
+);
+ 
+insert into holidays values
+('2022-01-01','New Years Day'),('2022-02-15','Presidents Day'),
+('2022-11-28','Thanksgiving'),('2022-07-04','Independence Day'),
+('2022-09-06','Labor Day'),('2022-12-25','Chritmas Day');
+
+2. Using  Employee_details table categorize the employees into following categories
+  ·  0-50 working days – very short 
+  · 51-100 -short 
+  · 101-150 – Moderate 
+  · >150 –  long 
+
