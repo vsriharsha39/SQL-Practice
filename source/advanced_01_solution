@@ -1,0 +1,31 @@
+1. WITH CTE AS (
+    SELECT 
+        Emp_ID,
+        Emp_Name,
+        Join_date,
+        End_date,
+        DATEDIFF(day, Join_date, End_date) AS total_days,
+        (DATEDIFF(day, Join_date, End_date) / 7) * 2 AS weekend_days,
+        (SELECT COUNT(*) FROM holidays WHERE holiday_date BETWEEN Join_date AND End_date) AS holiday_count
+    FROM 
+        Employee_details
+)
+SELECT 
+    Emp_ID,
+    Emp_Name,
+    total_days - weekend_days - holiday_count AS working_days
+FROM 
+    CTE;
+
+2. SELECT 
+    Emp_ID,
+    Emp_Name,
+    DATEDIFF(day, Join_date, End_date) AS Working_Days,
+    CASE
+        WHEN DATEDIFF(day, Join_date, End_date) BETWEEN 0 AND 50 THEN 'very short'
+        WHEN DATEDIFF(day, Join_date, End_date) BETWEEN 51 AND 100 THEN 'short'
+        WHEN DATEDIFF(day, Join_date, End_date) BETWEEN 101 AND 150 THEN 'Moderate'
+        ELSE 'long'
+    END AS Category
+FROM 
+    Employee_details;
